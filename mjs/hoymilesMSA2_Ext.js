@@ -3,6 +3,9 @@ let state = { lastpower: 0, einspeisen_minute: 0 };
 let app = {};
 
 app.everyMinute = function (e) {
+  
+    let now = new Date();
+    print(now.getHours() )
   if (e) {
     state.lastpower = e.total_act_power | 0;
   } else {
@@ -23,7 +26,8 @@ app.everyMinute = function (e) {
 };
 
 app.applyLevel = function (level) {
-  if (level > -5) {
+    let now = new Date();
+  if (level > 5 && now.getHours() < 17) { 
     Shelly.call("http.get", {
       url: "http://192.168.178.243/relay/0?turn=on"
     });
