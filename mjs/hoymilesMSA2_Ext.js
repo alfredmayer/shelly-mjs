@@ -23,12 +23,14 @@ app.everyMinute = function (e) {
 };
 
 app.applyLevel = function (level) {
-  if (level > 5) {
+  if (level > -5) {
     Shelly.call("http.get", {
-      url: "http://192.168.1.166/relay/0?turn=on"
+      url: "http://192.168.178.243/relay/0?turn=on"
     });
   }
 };
+
+print(JSON.stringify(state))
 
 app.preEveryMinute = function () {
   Shelly.call("em.getstatus", { id: 0 }, app.everyMinute);
